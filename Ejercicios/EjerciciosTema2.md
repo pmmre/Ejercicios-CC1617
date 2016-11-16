@@ -12,6 +12,7 @@ https://es.wikipedia.org/wiki/YAML
 Y para comprobar que funciona correctamente he usado el siguiente convertidor de JSOn a YAML:
 http://www.json2yaml.com/
 
+En la siguiente imagen podemos ver la conversión correcta:
 ![JSONtoYAML](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%202%20CC/Seleccioacuten_009_zpszh8k4pwj.png)
 
 
