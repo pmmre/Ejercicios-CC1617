@@ -7,7 +7,6 @@
 
 Para realizar este ejercicio he buscado información de wikipedia de JSON y YAML de los siguientes enlaces:
 https://es.wikipedia.org/wiki/JSON
-
 https://es.wikipedia.org/wiki/YAML
 
 Y para comprobar que funciona correctamente he usado el siguiente convertidor de JSOn a YAML:
