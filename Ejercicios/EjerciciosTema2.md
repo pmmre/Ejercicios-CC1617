@@ -16,6 +16,7 @@ Y podemos ver que se ha instalado correctamente.
 Para este ejercicio se va a instalar nginx y geany.
 
 En la siguiente imagen vemos la estructura que deben de tener los ficheros de chef.
+
 ![ChefDirectorio](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%202%20CC/Seleccioacuten_038_zps9n7ejpzw.png)
 
 Dentro de cookbooks tenemos los distintas instalaciones que podemos hacer. Dentro de default.rb tenemos los paquetes que instalaremos al ejecutar ese cookbooks. En Geany instalamos geany, en nginx instalamos nginx y en CineForYou tenemos todos los paquetes encesarios para la api de cines.
@@ -44,39 +45,52 @@ En la siguiente imagen podemos ver la conversión correcta:
 # Ejercicio 5. Desplegar los fuentes de la aplicación de DAI o cualquier otra aplicación que se encuentre en un servidor git público en la máquina virtual Azure (o una máquina virtual local) usando ansible.
 
 Para solucionar el problema del openssl ese instalar los siguientes paquetes:
+```
 sudo apt-get install python-pip python-dev libffi-dev libssl-dev libxml2-dev libxslt1-dev libjpeg8-dev zlib1g-dev
+```
 
-Para configurar el ssh instalamos ssh-copy-id -p 2222 -i ~/.ssh/id_rsa.pub vagrant@localhost y comprobamos que funciona ahora sin pedirnos la contraseña.
+Una vez hecho esto instalamos instalamos ansibles.
+```
+sudo pip install paramiko PyYAML jinja2 httplib2 ansible
+```
 
-Para realizar un ping para comprobar que lo hace bien con virtualbox utilizamos el siguiente comando:
-ansible all -i 'localhost,' -c local -m ping
+Ahora debemos de configurar ansible_hosts que es dónde configurar los grupos de servidores que es el nombre entre corchetes y dentro los servidores.
+Para cada servidor pordemos configurar su s parámetros de entrada como la ip para acceder, el usuario al que se conectará y cuál es la llave pública.
+![Configurar ansible_hosts](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%202%20CC/Seleccioacuten_041_zpscyhmo2tu.png)
 
+Los siguiente que tenemos que hacer es indicarle a ansible que utilcice estas direcciones: ```export ANSIBLE_HOSTS=~/ansible_hosts```
 
+Y comprobamos que se puede realizar correctamente un ping a la máquina de AWS: ```ansible ubuntu -m ping```
+![Ping a máquina AWS](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%202%20CC/Seleccioacuten_042_zpsev5ls0wu.png)
 
+Y ya podemos empezar a mandar ordenes remotamente a la máquina de ansible
 
 
 Actualizamos los repositorios
-ansible ubuntu_local -m command -a "sudo apt-get update"
+```ansible ubuntu -m command -a "sudo apt-get update"```
 
-Instalamos github
-ansible ubuntu_local -m command -a "sudo apt-get -y install git"
-Con la opción -y le estamos indicando que
+Instalamos git y le indicamos con -y que instale las dependecias automáticamente.
+```ansible ubuntu -m command -a "sudo apt-get -y install git"```
+
 
 Ahora lo que hacemos es descargar la aplicación del repositorio.
-ansible ubuntu_local -m git -a "repo=https://github.com/pmmre/Empresas.git dest=~/Calificaciones version=HEAD"
+ansible ubuntu -m git -a "repo=https://github.com/pmmre/Empresas.git dest=~/Calificaciones version=HEAD"
+Y podemos ver en la siguiente imagen que descarga el repositorio. Si es amarillo indica que no estaba y lo esta completando, y si está verde indicaría que ya lo tiene.
+![Imagen para descargar repositorio](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%202%20CC/Seleccioacuten_043_zps1t2y7mvh.png)
 
 Ahora instalamos pip para poder instalar las dependecias del proyecto:
-ansible ubuntu_local -m command -a "sudo apt-get -y install python-pip"
+```ansible ubuntu -m command -a "sudo apt-get -y install python-pip"```
 
-Como falta el paquete Error: pg_config executable not found.
+Si tenemos el siguiente problema "Error: pg_config executable not found".
 instalamos lo siguiente:
-ansible ubuntu_local -m command -a "sudo apt-get -y install libpq-dev python-dev"
+```ansible ubuntu -m command -a "sudo apt-get -y install libpq-dev python-dev"```
 
 Ahora instalamos todas las dependencias del proyecto
-ansible ubuntu_local -m command -a "sudo pip install -r Calificaciones/requirements.txt"
+ansible ubuntu -m command -a "sudo python Calificaciones/manage.py runserver 0.0.0.0:80"
 
-Ahora instalamos nginx
-ansible ubuntu_local -m command -a "sudo apt-get -y install nginx"
+Y ya podemos ver la web ejecutándose públicamente.
+![Viendo web públicamente](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%202%20CC/Seleccioacuten_044_zpsstbdsdto.png)
+
 
 # Ejercicio 6. Desplegar la aplicación de DAI con todos los módulos necesarios usando un playbook de Ansible.
 
