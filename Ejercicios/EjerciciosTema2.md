@@ -1,8 +1,11 @@
 # Ejercicicio 1. Instalar chef en la máquina virtual que vayamos a usar.
 Para instalar chef necesitamos ejecutar las siguientes líneas:
-`sudo apt-get install ruby1.9.1 ruby1.9.1-dev rubygems
+
+```
+sudo apt-get install ruby1.9.1 ruby1.9.1-dev rubygems
 sudo gem install ohai chef
-curl -L https://www.opscode.com/chef/install.sh | bash`
+curl -L https://www.opscode.com/chef/install.sh | bash
+```
 
 Y podemos ver que se ha instalado correctamente.
 ![ChequeoChefInstalado](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%202%20CC/Seleccioacuten_038_zpssk9xlxig.png)
