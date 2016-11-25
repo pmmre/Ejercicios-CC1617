@@ -1,9 +1,16 @@
-#Ejercicicio 1. Instalar chef en la máquina virtual que vayamos a usar.
+# Ejercicicio 1. Instalar chef en la máquina virtual que vayamos a usar.
+Para instalar chef necesitamos ejecutar las siguientes líneas:
+`sudo apt-get install ruby1.9.1 ruby1.9.1-dev rubygems
+sudo gem install ohai chef
+curl -L https://www.opscode.com/chef/install.sh | bash`
 
-#Ejercicio 2. Crear una receta para instalar nginx, tu editor favorito y algún directorio y fichero que uses de forma habitual.
+Y podemos ver que se ha instalado correctamente.
+![ChequeoChefInstalado](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%202%20CC/Seleccioacuten_038_zpssk9xlxig.png)
+
+# Ejercicio 2. Crear una receta para instalar nginx, tu editor favorito y algún directorio y fichero que uses de forma habitual.
 
 
-#Ejercicio 3. Escribir en YAML la siguiente estructura de datos en JSON { uno: "dos", tres: [ 4, 5, "Seis", { siete: 8, nueve: [ 10, 11 ] } ] }
+# Ejercicio 3. Escribir en YAML la siguiente estructura de datos en JSON { uno: "dos", tres: [ 4, 5, "Seis", { siete: 8, nueve: [ 10, 11 ] } ] }
 
 Para realizar este ejercicio he buscado información de wikipedia de JSON y YAML de los siguientes enlaces:
 https://es.wikipedia.org/wiki/JSON
@@ -17,15 +24,45 @@ En la siguiente imagen podemos ver la conversión correcta:
 ![JSONtoYAML](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%202%20CC/Seleccioacuten_009_zpszh8k4pwj.png)
 
 
-#Ejercicio 4. Provisionar una máquina virtual en algún entorno con los que trabajemos habitualmente usando Salt.
+# Ejercicio 4. Provisionar una máquina virtual en algún entorno con los que trabajemos habitualmente usando Salt.
 
-#Ejercicio 5. Desplegar los fuentes de la aplicación de DAI o cualquier otra aplicación que se encuentre en un servidor git público en la máquina virtual Azure (o una máquina virtual local) usando ansible.
+# Ejercicio 5. Desplegar los fuentes de la aplicación de DAI o cualquier otra aplicación que se encuentre en un servidor git público en la máquina virtual Azure (o una máquina virtual local) usando ansible.
 
-#Ejercicio 6. Desplegar la aplicación de DAI con todos los módulos necesarios usando un playbook de Ansible.
+Para solucionar el problema del openssl ese instalar los siguientes paquetes:
+sudo apt-get install python-pip python-dev libffi-dev libssl-dev libxml2-dev libxslt1-dev libjpeg8-dev zlib1g-dev
 
-#Ejercicio 7. Instalar una máquina virtual Debian usando Vagrant y conectar con ella.
+Para configurar el ssh instalamos ssh-copy-id -p 2222 -i ~/.ssh/id_rsa.pub vagrant@localhost y comprobamos que funciona ahora sin pedirnos la contraseña.
+
+Para realizar un ping para comprobar que lo hace bien con virtualbox utilizamos el siguiente comando:
+ansible all -i 'localhost,' -c local -m ping
 
 
-#Ejercicio 8. Crear un script para provisionar `nginx` o cualquier otro servidor web que pueda ser útil para alguna otra práctica
 
-#Ejercicio 9. Configurar tu máquina virtual usando `vagrant` con el provisionador ansible
+
+
+Actualizamos los repositorios
+ansible ubuntu_local -m command -a "sudo apt-get update"
+
+Instalamos github
+ansible ubuntu_local -m command -a "sudo apt-get -y install git"
+Con la opción -y le estamos indicando que
+
+Ahora lo que hacemos es descargar la aplicación del repositorio.
+ansible ubuntu_local -m git -a "repo=https://github.com/pmmre/Empresas.git dest=~/Calificaciones version=HEAD"
+
+Ahora instalamos pip para poder instalar las dependecias del proyecto:
+ansible ubuntu_local -m command -a "sudo apt-get -y install python-pip"
+
+Como falta el paquete Error: pg_config executable not found.
+instalamos lo siguiente:
+ansible ubuntu_local -m command -a "sudo apt-get -y install libpq-dev python-dev"
+
+Ahora instalamos todas las dependencias del proyecto
+ansible ubuntu_local -m command -a "sudo pip install -r Calificaciones/requirements.txt"
+
+Ahora instalamos nginx
+ansible ubuntu_local -m command -a "sudo apt-get -y install nginx"
+
+# Ejercicio 6. Desplegar la aplicación de DAI con todos los módulos necesarios usando un playbook de Ansible.
+
+
