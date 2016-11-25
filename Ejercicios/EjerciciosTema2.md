@@ -3,7 +3,9 @@ Para instalar chef necesitamos ejecutar las siguientes líneas:
 
 ```
 sudo apt-get install ruby1.9.1 ruby1.9.1-dev rubygems
+
 sudo gem install ohai chef
+
 curl -L https://www.opscode.com/chef/install.sh | bash
 ```
 
@@ -11,8 +13,18 @@ Y podemos ver que se ha instalado correctamente.
 ![ChequeoChefInstalado](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%202%20CC/Seleccioacuten_038_zpssk9xlxig.png)
 
 # Ejercicio 2. Crear una receta para instalar nginx, tu editor favorito y algún directorio y fichero que uses de forma habitual.
+Para este ejercicio se va a instalar nginx y geany.
 
+En la siguiente imagen vemos la estructura que deben de tener los ficheros de chef.
+![ChefDirectorio](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%202%20CC/Seleccioacuten_038_zps9n7ejpzw.png)
 
+Dentro de cookbooks tenemos los distintas instalaciones que podemos hacer. Dentro de default.rb tenemos los paquetes que instalaremos al ejecutar ese cookbooks. En Geany instalamos geany, en nginx instalamos nginx y en CineForYou tenemos todos los paquetes encesarios para la api de cines.
+
+Dentro de los archivos default.rb tenemos los paquetes que instalaremos.
+![ChefPaquetes](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%202%20CC/Seleccioacuten_039_zpskgdjopcg.png)
+
+En la siguiente imagen podemos ver las configuraciones de node.json que es dónde se indica las recetas que se ejecutarán y en solo.rb indican dónde se encuentran los archivos de configuración.
+![Chef archivos de configuración](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%202%20CC/Seleccioacuten_040_zpsukaaxd3e.png)
 # Ejercicio 3. Escribir en YAML la siguiente estructura de datos en JSON { uno: "dos", tres: [ 4, 5, "Seis", { siete: 8, nueve: [ 10, 11 ] } ] }
 
 Para realizar este ejercicio he buscado información de wikipedia de JSON y YAML de los siguientes enlaces:
