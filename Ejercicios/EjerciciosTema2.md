@@ -19,7 +19,7 @@ En la siguiente imagen vemos la estructura que deben de tener los ficheros de ch
 
 ![ChefDirectorio](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%202%20CC/Seleccioacuten_038_zps9n7ejpzw.png)
 
-Dentro de cookbooks tenemos los distintas instalaciones que podemos hacer. Dentro de default.rb tenemos los paquetes que instalaremos al ejecutar ese cookbooks. En Geany instalamos geany, en nginx instalamos nginx y en CineForYou tenemos todos los paquetes encesarios para la api de cines.
+Dentro de cookbooks tenemos los distintas instalaciones que podemos hacer. Dentro de default.rb tenemos los paquetes que instalaremos al ejecutar ese cookbooks. En Geany instalamos geany, en nginx instalamos nginx y en CineForYou tenemos todos los paquetes necesarios para la api de cines.
 
 Dentro de los archivos default.rb tenemos los paquetes que instalaremos.
 ![ChefPaquetes](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%202%20CC/Seleccioacuten_039_zpskgdjopcg.png)
