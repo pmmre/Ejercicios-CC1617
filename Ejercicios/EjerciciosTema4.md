@@ -35,3 +35,27 @@ Resultan interesantea los siguientes comandos:
  - `sudo  lxc-destroy -n <nombre_del_contenedor>` para poder eliminar contenedores que no deseemos.
  - `sudo lxc-stop -n <nombre_del_contenedor>` para detener un contenedor.
 
+
+## Ejercicio 3. Provisionar un contenedor LXC usando Ansible o alguna otra herramienta de configuración que ya se haya usado.
+
+Lo primero que debemos de hacer es instalar el plugin de vagrant para lxc: `vagrant plugin install vagrant-lxc`
+
+![instaldo_el_plugin_vagrant-lxc]()
+
+## Ejercicio 4. Instalar una imagen alternativa de Ubuntu y alguna adicional, por ejemplo de CentOS.
+Lo primero que debemos de hacer es instalar docker con el siguiente comando: `sudo apt-get install docker.io`
+Y ahora ejecutamos el servicio de docker: `sudo service docker start`
+
+Ahora instalamos ubuntu usando: `sudo docker pull ubuntu`
+
+![Instalando_ubuntu](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%204%20CC/Ejercicio%204/Seleccioacuten_005_zpsqwq0ibm8.png) 
+
+Ahora instalamos centOS usando: `sudo docker pull centos`
+
+![Instalando_centos](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%204%20CC/Ejercicio%204/Seleccioacuten_006_zpsvjkazo46.png)
+
+Y podemos ver los contendedores instalados en el sistema usando: `sudo docker images`
+
+![Contenedores_instalados](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%204%20CC/Ejercicio%204/Seleccioacuten_007_zpshegvab2w.png)
+
+
