@@ -59,3 +59,21 @@ Y podemos ver los contendedores instalados en el sistema usando: `sudo docker im
 ![Contenedores_instalados](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%204%20CC/Ejercicio%204/Seleccioacuten_007_zpshegvab2w.png)
 
 
+## Ejercicio 5. Crear a partir del contenedor anterior una imagen persistente con commit.
+
+En este ejercicio crearos un commit de un estado del sistema.
+
+Ejecutamos el comando `sudo docker ps -a` para ver los ultimos estados de los sistemas. Ahora realizamos un commit ejecutando `sudo docker commit <ID> <nombre_commit>` y podemos ver el nuevo commit en `sudo docker images`.
+
+![Creación_del_commit](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%204%20CC/Ejercicio%205/Seleccioacuten_012_zps31aw8n3n.png)
+
+Podemos construir montar el contenedor del commit con `sudo docker build -t pablo/commit-ubuntu .`
+
+![montar_commit](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%204%20CC/Ejercicio%205/Seleccioacuten_014_zpsfj1ppm00.png)
+
+Y podemos realizar un ssh con `sudo docker run -it pablo/commit-ubuntu sh`
+
+![ssh_en_commit](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%204%20CC/Ejercicio%205/Seleccioacuten_015_zpsvmhjhuwe.png)
+
+
+
