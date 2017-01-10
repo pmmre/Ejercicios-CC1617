@@ -67,13 +67,41 @@ Ejecutamos el comando `sudo docker ps -a` para ver los ultimos estados de los si
 
 ![Creación_del_commit](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%204%20CC/Ejercicio%205/Seleccioacuten_012_zps31aw8n3n.png)
 
-Podemos construir montar el contenedor del commit con `sudo docker build -t pablo/commit-ubuntu .`
 
-![montar_commit](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%204%20CC/Ejercicio%205/Seleccioacuten_014_zpsfj1ppm00.png)
+## Ejercicio 6. Reproducir los contenedores creados anteriormente usando un Dockerfile.
 
-Y podemos realizar un ssh con `sudo docker run -it pablo/commit-ubuntu sh`
+Para realizar este ejercicio lo primero que debemos de hacer es un dockerfile en el que pongamos la instalación que queramos que se instale en el contenedor al ejecutarlo.
 
-![ssh_en_commit](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%204%20CC/Ejercicio%205/Seleccioacuten_015_zpsvmhjhuwe.png)
+El dockerfile tiene el siguiente contenido:
+```
+FROM ubuntu:latest
+
+#Autor
+MAINTAINER Pablo Martin-Moreno Ruiz <pmmr1990@gmail.com>
+
+#Actualizar Sistema Base
+RUN sudo apt-get -y update
+
+
+# Instalar Python 
+RUN sudo apt-get install -y python-setuptools
+RUN sudo apt-get -y install python-dev
+RUN sudo apt-get -y install build-essential
+RUN sudo apt-get -y install python-psycopg2
+RUN sudo apt-get -y install libpq-dev
+RUN sudo easy_install pip
+RUN sudo pip install --upgrade pip
+RUN sudo pip install Django
+RUN sudo apt-get install mongoDB
+```
+
+Podemos construirlo ejecutamos donde tengamos el Dockerfile el siguiente comando: `sudo docker build -t pablo/commit-ubuntu .`
+
+![montar_commit](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%204%20CC/Ejercicio%206/Seleccioacuten_014_zpsfj1ppm00.png)
+
+Y ahora podemos realizar un ssh con `sudo docker run -it pablo/commit-ubuntu sh`
+
+![ssh_en_commit](http://i393.photobucket.com/albums/pp14/pmmre/CC/Ejercicios%20Tema%204%20CC/Ejercicio%206/Seleccioacuten_015_zpsvmhjhuwe.png)
 
 
 
